@@ -7,4 +7,3 @@ create table customer_portraits
 );
 
 -- найти последний портрет (id, s3_location, created_at) для каждого customer'a, отфильтровать портреты у которых customer_id = null
-

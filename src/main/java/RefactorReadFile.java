@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Даны пути для файлов (String[] args)
+ * Необходимо вывести в консоль слова, которые повторяются ровно 1 раз (для каждого файла)
+ */
 public class RefactorReadFile {
 
     public static void main(String[] args) {

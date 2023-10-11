@@ -19,4 +19,3 @@ values (1, 1, 'phone', '123456790'),
 -- во второй колонке номер\емейл
 -- в третьей customer_communication_channels.id[]
 -- в четвертой customer_communication_channels.customer_id[]
-

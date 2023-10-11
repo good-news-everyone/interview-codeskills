@@ -1,5 +1,9 @@
 import java.util.List;
 
+/**
+ * Необходимо найти человека с минимальным возрастом в комнате с максимальным количеством человек
+ * В конце метода solution нужно вызвать метод writeSolution(user, room)
+ */
 class FindUser {
 
     public static void main(String[] args) {
@@ -7,9 +11,9 @@ class FindUser {
         solution(rooms);
     }
 
-    // найти человека с минимальным возрастом в комнате с максимальным количеством человек
     private static void solution(List<Room> rooms) {
         // TODO
+        // writeSolution(user, room)
     }
 
     private static void writeSolution(User user, Room room) {
