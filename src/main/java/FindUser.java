@@ -1,7 +1,6 @@
-import java.util.Comparator;
 import java.util.List;
 
-class Solution {
+class FindUser {
 
     public static void main(String[] args) {
         List<Room> rooms = List.of();
@@ -45,10 +44,6 @@ class Solution {
 
         public List<User> getUsers() {
             return this.users;
-        }
-
-        public int getUsersCount() {
-            return users.size();
         }
     }
 }

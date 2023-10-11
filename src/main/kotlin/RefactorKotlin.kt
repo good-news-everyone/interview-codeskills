@@ -3,6 +3,20 @@ import java.lang.Exception
 import java.math.BigDecimal
 import kotlin.random.Random
 
+/**
+ * Есть некий платежный шлюз, которые проводит платежи
+ * Платёж можно произвести через разных платёжных провайдеров (внешние интеграции)
+ * Платёжные провайдеры есть двух типов : FAST_PAYMENTS и EASY_PAYMENTS
+ *
+ * В рамках этого метода мы должны провести платеж
+ * В первую очередь, мы должны попытаться через провайдера, который указан в платеже (payment.paymentProvider)
+ * Если не удаётся, то мы выбираем из базы всех подходящих по параметрам (paymentProviderRepository.findSuitablePaymentProviders)
+ * Для каждого провайдера мы должны проверить, что сумма подходит для выбранного платёжного провайдера
+ * Если провайдер подходит, то мы должны получить ссылку на инвойс (invoiceProvider.providePaymentUrl(payment, paymentProvider))
+ * Если ссылка = null, увеличиваем payment.retries на 1 и продолжить со следущим платёжным провайдером
+ * Если ссылка != null, то устанавливаем payment.paymentProvider = подходящий пеймент провайдер
+ * В случае, если после всех попыток получить ссылку не удалось, нужно сделать запись в лог и отдать null
+ */
 class RefactorKotlin(
     private val invoiceProvider: InvoiceProvider,
     private val paymentRepository: PaymentRepository,
@@ -24,8 +38,8 @@ class RefactorKotlin(
                     throw EasyPaymentException()
                 } else throw e
             }
-            val url = invoiceProvider.providePaymentUrl(payment, paymentProvider) ?: continue
             payment.retries++
+            val url = invoiceProvider.providePaymentUrl(payment, paymentProvider) ?: continue
             payment.paymentProvider = paymentProvider
             paymentUrl = url
         }
@@ -36,7 +50,7 @@ class RefactorKotlin(
         return paymentUrl
     }
 
-    fun refactor(payment: Payment): String? {
+    fun refactor(payment: Payment): String {
         return TODO()
     }
 }
